@@ -1,14 +1,18 @@
 import React from "react";
 import s from './Navbar.module.css'
+import profile from "../Profile/Profile";
+import {message} from "antd";
+import dialogs from "../Dialogs/Dialogs";
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <a>Profile</a>
+                <NavLink to  ={'profile'} activeClassName={s.active}>Profile</NavLink>
             </div>
             <div className={s.item}>
-                <a>Messages</a>
+                <NavLink to  ={'dialogs'} activeClassName={s.active}>Messages</NavLink>
             </div>
             <div className={s.item}>
                 <a>News</a>
