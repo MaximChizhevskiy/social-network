@@ -1,8 +1,16 @@
 import React from "react";
 import s from './MyPosts.module.css'
-import Post from "./Post/Post";
+import Post, {PostPropsType} from "./Post/Post";
+
+export type PostDataType = {
+    postData: PostPropsType[]
+}
 
 const MyPosts = (props: any) => {
+    let postData = [
+        {id: 1, message: "Привет! Как дел?", likesCount: 15 },
+        {id: 2, message: "Вот мой новый пост", likesCount: 17}
+    ]
     return (
         <div className={s.postsBlock}>
             <h3>MyPosts</h3>
@@ -15,9 +23,9 @@ const MyPosts = (props: any) => {
                 </div>
             </div>
             <div className={s.posts}>
-                <Post message={`Привет! Как дел?`} like={`Like: 15`}/>
-                <Post message={`Что новенького`} like={`Like: 17`}/>
-                <Post message={`Что делаешь завтра?`} like={`Like: 23`}/>
+                <Post id={postData[0].id} message={postData[0].message} likesCount={postData[0].likesCount}/>
+                <Post id={postData[1].id} message={postData[1].message} likesCount={postData[1].likesCount}/>
+
             </div>
         </div>
     )
