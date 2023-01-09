@@ -1,4 +1,37 @@
-let state = {
+type MessageType = {
+    id:number
+    message:string
+}
+
+type DialogsType = {
+    id: number
+    name: string
+}
+
+type PostType = {
+    id: number
+    message:string
+    likesCount: number
+}
+
+type ProfilePageType = {
+    posts: Array<PostType>
+}
+
+type DialogsPageType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogsType>
+}
+
+type SidebarType = {}
+
+type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+
+let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: "Давно не виделись", likesCount: 15},
@@ -26,7 +59,8 @@ let state = {
             {id: 5, name: 'Dauren'},
             {id: 6, name: 'Wova'}
         ]
-    }
+    },
+    sidebar: {}
 }
 
 export default state;

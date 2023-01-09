@@ -21,8 +21,6 @@ function App(props: any) {
                                render={() => <Dialogs state={props.state.dialogsPage}/>}/>
 
                     </Switch>
-
-
                     {/*<Dialogs/>*/}
                     {/*<ProfileInfo/>*/}
                 </div>
