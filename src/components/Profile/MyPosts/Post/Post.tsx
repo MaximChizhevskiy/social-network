@@ -14,7 +14,7 @@ const Post = (props: any) => {
                 <img src='https://klike.net/uploads/posts/2019-03/medium/1551511829_46.jpg' alt={''}/>
                 {props.message}
                 <div>
-                    <span>{props.likesCount}</span>
+                    <span>Like: {props.likesCount}</span>
                 </div>
             </div>
         </div>

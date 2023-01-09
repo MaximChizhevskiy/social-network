@@ -7,13 +7,18 @@ export type PostDataType = {
 }
 
 const MyPosts = (props: any) => {
-    let posts = [
-        {id: 1, message: "Привет! Как дел?", likesCount: 15 },
-        {id: 2, message: "Вот мой новый пост", likesCount: 17}
-    ]
+    console.log('postsProps', props)
+    /*let posts = [
+        {id: 1, message: "Давно не виделись", likesCount: 15 },
+        {id: 2, message: "Вот мой новый пост", likesCount: 17},
+        {id: 3, message: "Обработал фоточки", likesCount: 19},
+        {id: 4, message: "Тяжёлая учёба", likesCount: 20},
+        {id: 5, message: "Супер выходные", likesCount: 25},
+        {id: 6, message: "Просто пост", likesCount: 3}
+    ]*/
 
     let postsElement =
-        posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
+        props.posts.map((p: { id: any; message: any; likesCount: any; }) => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     return (
         <div className={s.postsBlock}>
