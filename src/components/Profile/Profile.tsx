@@ -1,16 +1,21 @@
 import React from "react";
-import s from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPosts, {PostDataType} from "./MyPosts/MyPosts";
-import {PostPropsType} from "./MyPosts/Post/Post";
+import MyPosts from "./MyPosts/MyPosts";
+import {PostType} from "./MyPosts/Post/Post";
 
 
 
-const Profile = (props:any) => {
+export type ProfilePagePropsType = {
+    posts: Array<PostType>
+    addPost:(postText: string) => void
+}
+
+const Profile = (props:ProfilePagePropsType) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts posts={props.state.posts}/>
+
+            <MyPosts posts={props.posts} addPost={props.addPost}/>
         </div>
     )
 }

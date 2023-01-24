@@ -1,34 +1,16 @@
-type MessageType = {
-    id:number
-    message:string
-}
+import {rerenderEntireTree} from "../render";
+import {PostType} from "../components/Profile/MyPosts/Post/Post";
+import {DialogsPageType} from "../components/Dialogs/Dialogs";
 
-type DialogsType = {
-    id: number
-    name: string
-}
 
-type PostType = {
-    id: number
-    message:string
-    likesCount: number
-}
-
-type ProfilePageType = {
-    posts: Array<PostType>
-}
-
-type DialogsPageType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogsType>
-}
-
-type SidebarType = {}
-
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: SidebarType
+
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
 }
 
 let state: RootStateType = {
@@ -60,7 +42,18 @@ let state: RootStateType = {
             {id: 6, name: 'Wova'}
         ]
     },
-    sidebar: {}
 }
+
+export const addPost = (postText: string) => {
+
+    const newPost: PostType = {
+        id: 5,
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
+}
+
 
 export default state;

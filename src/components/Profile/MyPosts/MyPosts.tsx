@@ -1,34 +1,35 @@
 import React from "react";
 import s from './MyPosts.module.css'
-import Post, {PostPropsType} from "./Post/Post";
+import Post, {PostType} from "./Post/Post";
 
-export type PostDataType = {
-    postData: PostPropsType[]
+
+type MyPostsPropsType ={
+    posts: Array<PostType>
+    addPost:(postText: string) => void
 }
 
-const MyPosts = (props: any) => {
-    console.log('postsProps', props)
-    /*let posts = [
-        {id: 1, message: "Давно не виделись", likesCount: 15 },
-        {id: 2, message: "Вот мой новый пост", likesCount: 17},
-        {id: 3, message: "Обработал фоточки", likesCount: 19},
-        {id: 4, message: "Тяжёлая учёба", likesCount: 20},
-        {id: 5, message: "Супер выходные", likesCount: 25},
-        {id: 6, message: "Просто пост", likesCount: 3}
-    ]*/
+const MyPosts = (props: MyPostsPropsType) => {
 
-    let postsElement =
-        props.posts.map((p: { id: any; message: any; likesCount: any; }) => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
+    const postsElement =
+        props.posts.map((p: { id: number; message: string; likesCount: number; }) => <Post id={p.id} message={p.message}
+                                                                                  likesCount={p.likesCount}/>)
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    const addPost = () => {
+        if(newPostElement.current)
+        props.addPost(newPostElement.current.value)
+        
+    }
 
     return (
         <div className={s.postsBlock}>
             <h3>MyPosts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Add Post</button>
+                    <button onClick={addPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>
