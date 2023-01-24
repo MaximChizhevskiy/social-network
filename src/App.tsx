@@ -5,12 +5,14 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Dialogs, {DialogsPageType} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {addPost, ProfilePageType} from "./redux/state";
+import {ProfilePageType} from "./redux/state";
 
 type AppType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    addPost: (postText: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    newPostText: string
 }
 
 function App(props: AppType) {
@@ -22,7 +24,7 @@ function App(props: AppType) {
                 <div className={'app-wrapper-content'}>
                     <Switch>
                         <Route path={'/profile'}
-                               render={() => <Profile posts={props.profilePage.posts} addPost={props.addPost}/>}/>
+                               render={() => <Profile posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}/>
                         <Route path={'/dialogs'}
                                render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
                                                       messages={props.dialogsPage.messages}/>}/>

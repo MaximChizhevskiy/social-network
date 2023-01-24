@@ -7,7 +7,9 @@ import {PostType} from "./MyPosts/Post/Post";
 
 export type ProfilePagePropsType = {
     posts: Array<PostType>
-    addPost:(postText: string) => void
+    addPost:() => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 const Profile = (props:ProfilePagePropsType) => {
@@ -15,7 +17,7 @@ const Profile = (props:ProfilePagePropsType) => {
         <div>
             <ProfileInfo />
 
-            <MyPosts posts={props.posts} addPost={props.addPost}/>
+            <MyPosts posts={props.posts} addPost={props.addPost} newPostText={props.newPostText} updateNewPostText={props.updateNewPostText}/>
         </div>
     )
 }
