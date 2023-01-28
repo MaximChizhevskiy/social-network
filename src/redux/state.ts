@@ -15,11 +15,21 @@ export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: (_state: RootStateType) => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     subscribe: (observer: (props: RootStateType) => void) => void
-
+    dispatch: (action:ActionsTypes) => void
 }
+
+export type AddPostActionType = {
+    type: 'ADD-POST'
+    postText: string
+}
+
+export type ChangeNewTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 let store: StoreType = {
     _state: {
@@ -53,29 +63,32 @@ let store: StoreType = {
             ]
         },
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber() {
         console.log('state changed')
     },
-    addPost() {
-        const newPost: PostType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
+
+    getState() {
+        return this._state
     },
     subscribe(observer) {
         this._callSubscriber = observer
-    }
+    },
 
+    dispatch(action:ActionsTypes) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
+    }
 }
+
 export default store;
