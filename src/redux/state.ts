@@ -17,31 +17,22 @@ export type StoreType = {
     _callSubscriber: (_state: RootStateType) => void
     subscribe: (observer: (props: RootStateType) => void) => void
     dispatch: (action: ActionsTypes) => void
-
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-    postText: string
+type AddPostActionType = ReturnType<typeof addPostActionCreator>
+export const addPostActionCreator = (newPostText: string) => {
+    return {
+        type: "ADD-POST",
+        payload: {newPostText}
+    } as const
 }
 
-export type ChangeNewTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-export const addPostActionCreator = (newPostText: string):AddPostActionType => {
-        return {
-            type: "ADD-POST",
-            postText: newPostText
-        }
-    }
-
-    export const updateNewPostTextActionCreator = (newText: string) :ChangeNewTextActionType => {
+type ChangeNewTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
+export const updateNewPostTextActionCreator = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    }
+        payload: {newText}
+    } as const
 }
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
@@ -100,7 +91,7 @@ let store: StoreType = {
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
+            this._state.profilePage.newPostText = action.payload.newText
             this._callSubscriber(this._state)
         }
     },
