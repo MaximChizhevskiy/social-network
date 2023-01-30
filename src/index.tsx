@@ -7,7 +7,8 @@ import store, {RootStateType} from "./redux/state";
 export let rerenderEntireTree = (props: RootStateType) => {
     ReactDOM.render(
         <App dialogsPage={store.getState().dialogsPage} profilePage={store.getState().profilePage}
-             newPostText={store.getState().profilePage.newPostText} dispatch={store.dispatch.bind(store)}/>,
+             newPostText={store.getState().profilePage.newPostText} dispatch={store.dispatch.bind(store)}
+             store={store}/>,
         document.getElementById('root')
     );
 }
