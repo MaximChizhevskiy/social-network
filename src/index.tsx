@@ -2,16 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store, {RootStateType} from "./redux/state";
+import {StoreReduxType} from "./redux/redux-store";
+import store from "./redux/redux-store";
 
-export let rerenderEntireTree = (props: RootStateType) => {
+export let rerenderEntireTree = (store: StoreReduxType) => {
     ReactDOM.render(
-        <App dialogsPage={store.getState().dialogsPage} profilePage={store.getState().profilePage}
-             newPostText={store.getState().profilePage.newPostText} dispatch={store.dispatch.bind(store)}
-             store={store}/>,
+        <App state={store.getState()}
+             dispatch={store.dispatch}
+
+        />,
         document.getElementById('root')
     );
 }
-rerenderEntireTree(store.getState())
+rerenderEntireTree(store)
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+    rerenderEntireTree(store)
+})

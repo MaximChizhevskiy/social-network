@@ -1,13 +1,14 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post, {PostType} from "./Post/Post";
-import {ActionsTypes} from "../../../redux/state";
+import {ActionsTypes} from "../../../redux/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
+import {DispatchType} from "../../../redux/redux-store";
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (actions: ActionsTypes) => void
+    dispatch: DispatchType
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
