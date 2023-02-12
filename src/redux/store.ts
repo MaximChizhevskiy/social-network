@@ -73,5 +73,3 @@ let store: StoreType = {
         this._callSubscriber(this._state)
     }
 }
-
-export default store;

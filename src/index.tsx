@@ -9,6 +9,7 @@ export let rerenderEntireTree = (store: StoreReduxType) => {
     ReactDOM.render(
         <App state={store.getState()}
              dispatch={store.dispatch}
+             store={store}
 
         />,
         document.getElementById('root')

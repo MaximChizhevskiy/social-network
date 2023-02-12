@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {DispatchType, StateReduxType} from "./redux/redux-store";
+import {DispatchType, StateReduxType, StoreReduxType} from "./redux/redux-store";
 
 type AppType = {
     // profilePage: ProfilePageType
@@ -14,7 +14,7 @@ type AppType = {
     // dispatch: (action: ActionsTypes) => void
     dispatch: DispatchType
     state: StateReduxType
-    // store: StoreReduxType
+    store: StoreReduxType
 }
 
 function App(props: AppType) {
@@ -28,9 +28,7 @@ function App(props: AppType) {
                 <div className={'app-wrapper-content'}>
                     <Switch>
                         <Route path={'/profile'}
-                               render={() => <Profile posts={profilePage.posts}
-                                                      newPostText={profilePage.newPostText}
-                                                      dispatch={dispatch}/>}/>
+                               render={() => <Profile store={props.store}/>}/>
                         <Route path={'/dialogs'}
                                render={() => <Dialogs dialogs={dialogsPage.dialogs}
                                                       messages={dialogsPage.messages}
