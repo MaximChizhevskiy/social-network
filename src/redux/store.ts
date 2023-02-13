@@ -23,7 +23,7 @@ export type StoreType = {
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateNewMessageBodyActionType | SendNewMessageActionType
 
-let store: StoreType = {
+let store: any = {
     _state: {
         profilePage: {
             posts: [
@@ -63,7 +63,7 @@ let store: StoreType = {
     getState() {
         return this._state
     },
-    subscribe(observer) {
+    subscribe(observer: any) {
         this._callSubscriber = observer
     },
 

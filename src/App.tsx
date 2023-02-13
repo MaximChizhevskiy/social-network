@@ -3,23 +3,18 @@ import './App.css';
 import Profile from "./components/Profile/Profile"
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {DispatchType, StateReduxType, StoreReduxType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppType = {
-    // profilePage: ProfilePageType
-    // dialogsPage: DialogsPageType
-    // newPostText: string
-    // dispatch: (action: ActionsTypes) => void
     dispatch: DispatchType
     state: StateReduxType
     store: StoreReduxType
 }
 
 function App(props: AppType) {
-    const {state, dispatch} = props
-    const {profilePage, dialogsPage} = state
+    const {state} = props
     return (
         <BrowserRouter>
             <div className={'app-wrapper'}>
@@ -30,9 +25,7 @@ function App(props: AppType) {
                         <Route path={'/profile'}
                                render={() => <Profile store={props.store}/>}/>
                         <Route path={'/dialogs'}
-                               render={() => <Dialogs dialogs={dialogsPage.dialogs}
-                                                      messages={dialogsPage.messages}
-                                                      newMessageBody={dialogsPage.newMessageBody}/>}/>
+                               render={() => <DialogsContainer />}/>
                     </Switch>
                 </div>
             </div>

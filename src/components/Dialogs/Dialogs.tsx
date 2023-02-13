@@ -1,36 +1,42 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import Message, {MessageType} from "./Message/Message";
 import DialogItem, {DialogsType} from "./DialogItem/DialogItem";
-import store from "../../redux/redux-store";
-import {sendNewMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
+import {DialogsMapDispatchToProps, DialogsMapStateToProps} from "./DialogsContainer";
 
 export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogsType>
     newMessageBody: string
+    updateNewMessageBody: (body: string) => void
+    sendNewMessage: (value: string) => void
+    //dialogsPage:DialogsPageType
 
 }
+/*
+type DialogsPageExtraType ={
+    updateNewMessageBody: (body: string) => void
+    sendNewMessage: (value: string) => void
+    dialogsPage:DialogsPageType
+}*/
 
 const Dialogs = (props: DialogsPageType) => {
-
-    let state = store.getState().dialogsPage
-
-    const dialogsElement = state.dialogs
+    const [value, setValue] = useState('')
+    const dialogsElement = props.dialogs
         .map((dialog: { name: string; id: number }) => <DialogItem name={dialog.name} id={dialog.id}/>)
 
-    const messagesElements = state.messages
+    const messagesElements = props.messages
         .map((m: { message: string; id: number }) => <Message message={m.message} id={m.id}/>)
 
-    const newMessageBody = state.newMessageBody
+    const newMessageBody = props.newMessageBody
 
     const onSendMessageClick = () => {
-        store.dispatch(sendNewMessageActionCreator())
+        props.sendNewMessage(value)
     }
 
     const onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = event.target.value
-        store.dispatch(updateNewMessageBodyActionCreator(body))
+        let newMessageBody = event.target.value
+        setValue(newMessageBody)
     }
     return (
         <div className={s.dialogs}>
@@ -40,7 +46,7 @@ const Dialogs = (props: DialogsPageType) => {
             <div className={s.messages}>
                 <div>{messagesElements}</div>
                 <div>
-                    <div><textarea placeholder={"Enter your message"} value={newMessageBody}
+                    <div><textarea placeholder={"Enter your message"} value={value}
                                    onChange={onNewMessageChange}
                     ></textarea></div>
                     <div>
