@@ -1,4 +1,3 @@
-import {PostType} from "../components/Profile/MyPosts/Post/Post";
 import {ActionsTypes} from "./redux-store";
 import {ProfilePageType} from "./store";
 
@@ -33,19 +32,19 @@ export const updateNewPostTextActionCreator = (newText: string) => {
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
-            const newPost: PostType = {
-                id: 5,
-                message: state.newPostText,
-                likesCount: 0
+            return {
+                ...state,
+                posts: [...state.posts, {id: 5, message: action.payload.newPostText, likesCount: 0}]
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            break;
+
         case 'UPDATE-NEW-POST-TEXT':
-            state.newPostText = action.payload.newText
-            break;
+
+            return {...state, newPostText: action.payload.newText}
+        default: {
+            return state
+        }
     }
-    return state
+
 }
 
 export default profileReducer

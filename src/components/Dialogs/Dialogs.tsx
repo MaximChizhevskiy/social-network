@@ -23,10 +23,10 @@ type DialogsPageExtraType ={
 const Dialogs = (props: DialogsPageType) => {
     const [value, setValue] = useState('')
     const dialogsElement = props.dialogs
-        .map((dialog: { name: string; id: number }) => <DialogItem name={dialog.name} id={dialog.id}/>)
+        .map((dialog: { name: string; id: number }) => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
 
     const messagesElements = props.messages
-        .map((m: { message: string; id: number }) => <Message message={m.message} id={m.id}/>)
+        .map((message: { message: string; id: number }) => <Message message={message.message} id={message.id} key={message.id}/>)
 
     const newMessageBody = props.newMessageBody
 
