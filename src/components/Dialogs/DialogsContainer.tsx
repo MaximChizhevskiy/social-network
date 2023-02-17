@@ -1,9 +1,8 @@
 import React from 'react';
-import store, {DispatchType, StateReduxType, StoreReduxType} from "../../redux/redux-store";
+import {DispatchType, StateReduxType, StoreReduxType} from "../../redux/redux-store";
 import {sendNewMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import dialogs from "./Dialogs";
 import {MessageType} from "./Message/Message";
 import {DialogsType} from "./DialogItem/DialogItem";
 

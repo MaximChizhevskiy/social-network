@@ -1,5 +1,5 @@
 import {ActionsTypes} from "./redux-store";
-import {DialogsPageType} from "../components/Dialogs/Dialogs";
+
 
 let initialState = {
   messages: [

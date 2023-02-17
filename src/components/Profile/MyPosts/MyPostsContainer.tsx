@@ -1,14 +1,9 @@
 import React from "react";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import {DispatchType, StateReduxType, StoreReduxType} from "../../../redux/redux-store";
+import {DispatchType, StateReduxType} from "../../../redux/redux-store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import Dialogs from "../../Dialogs/Dialogs";
-import {MessageType} from "../../Dialogs/Message/Message";
-import {DialogsType} from "../../Dialogs/DialogItem/DialogItem";
 import {PostType} from "./Post/Post";
-import {ProfilePagePropsType} from "../Profile";
-import {ProfilePageType} from "../../../redux/store";
 
 export type MyPostsMapStateToProps = {
     posts: Array<PostType>
