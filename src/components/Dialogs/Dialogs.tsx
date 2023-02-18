@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import Message, {MessageType} from "./Message/Message";
 import DialogItem, {DialogsType} from "./DialogItem/DialogItem";
-import {DialogsMapDispatchToProps, DialogsMapStateToProps} from "./DialogsContainer";
 
 export type DialogsPageType = {
     messages: Array<MessageType>
@@ -10,15 +9,8 @@ export type DialogsPageType = {
     newMessageBody: string
     updateNewMessageBody: (body: string) => void
     sendNewMessage: (value: string) => void
-    //dialogsPage:DialogsPageType
+  }
 
-}
-/*
-type DialogsPageExtraType ={
-    updateNewMessageBody: (body: string) => void
-    sendNewMessage: (value: string) => void
-    dialogsPage:DialogsPageType
-}*/
 
 const Dialogs = (props: DialogsPageType) => {
     const [value, setValue] = useState('')

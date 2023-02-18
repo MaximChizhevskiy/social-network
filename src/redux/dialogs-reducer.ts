@@ -1,5 +1,4 @@
 import {ActionsTypes} from "./redux-store";
-import {DialogsPageType} from "../components/Dialogs/Dialogs";
 
 let initialState = {
   messages: [
@@ -40,12 +39,10 @@ export const sendNewMessageActionCreator = (value: string) => {
 const dialogsReducer = (state = initialState, action:ActionsTypes) => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-BODY':
-    //  state.newMessageBody = action.payload.newMessageBodyText
+
       return {...state, newMessageBody: action.payload.newMessageBodyText }
     case 'SEND-NEW-MESSAGE':
-      //let body = state.newMessageBody
-      //state.newMessageBody = ''
-     // state.messages.push({id: 6, message: body})
+
       return {...state, messages: [...state.messages, {id: 6, message: action.value}]}
     default: {
       return state
