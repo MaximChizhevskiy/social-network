@@ -1,12 +1,10 @@
 import {ActionsTypes} from "./redux-store";
-import {UsersPagePropsType} from "../components/Users/UsersContainer";
-
 
 export type UsersPropsType = {
     id: number,
-    photoUrl: string,
+    photos: any,// ИСПРАВИТЬ!
     followed: boolean,
-    fullName: string,
+    name: string,
     status: string,
     location: UserLocationPropsType
 }
