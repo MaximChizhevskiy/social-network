@@ -16,10 +16,16 @@ type UserLocationPropsType = {
 
 type initialStateType = {
     users: Array<UsersPropsType>
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
 }
 
 let initialState: initialStateType = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 export type FollowActionType = ReturnType<typeof followActionCreator>
@@ -43,6 +49,21 @@ export const setUsersActionCreator = (users: Array<UsersPropsType>) => {
     return {
         type: 'SET_USERS',
         payload: {users}
+    } as const
+}
+export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageActionCreator>
+export const setCurrentPageActionCreator = (currentPage: number) => {
+    return {
+        type: 'SET_CURRENT_PAGE',
+        payload: {currentPage}
+    } as const
+}
+
+export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountActionCreator>
+export const setTotalUsersCountActionCreator = (totalUsersCount: number) => {
+    return {
+        type: 'SET_TOTAL_USERS_COUNT',
+        count: totalUsersCount
     } as const
 }
 
@@ -69,7 +90,11 @@ const userReducer = (state: initialStateType = initialState, action: ActionsType
                 })
             }
         case "SET_USERS":
-            return {...state, users: [...state.users, ...action.payload.users]}
+            return {...state, users: action.payload.users}
+        case "SET_CURRENT_PAGE":
+            return {...state, currentPage: action.payload.currentPage}
+        case "SET_TOTAL_USERS_COUNT":
+            return {...state, totalUsersCount: action.count}
         default: {
             return state
         }
