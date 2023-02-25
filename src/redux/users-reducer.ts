@@ -7,6 +7,8 @@ export type UsersPropsType = {
     name: string,
     status: string,
     location: UserLocationPropsType
+    onPageChanged: (pages: Array<UsersPropsType>) => void
+
 }
 
 type UserLocationPropsType = {
