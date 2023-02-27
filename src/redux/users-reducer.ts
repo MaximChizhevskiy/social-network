@@ -32,47 +32,47 @@ let initialState: initialStateType = {
     isFetching: false
 }
 
-export type FollowActionType = ReturnType<typeof followActionCreator>
-export const followActionCreator = (userId: number) => {
+export type FollowActionType = ReturnType<typeof follow>
+export const follow = (userId: number) => {
     return {
         type: 'FOLLOW',
         payload: {userId}
     } as const
 }
 
-export type UnfollowActionType = ReturnType<typeof unfollowActionCreator>
-export const unfollowActionCreator = (userId: number) => {
+export type UnfollowActionType = ReturnType<typeof unfollow>
+export const unfollow = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         payload: {userId}
     } as const
 }
 
-export type SetUsersActionType = ReturnType<typeof setUsersActionCreator>
-export const setUsersActionCreator = (users: Array<UsersPropsType>) => {
+export type SetUsersActionType = ReturnType<typeof setUsers>
+export const setUsers = (users: Array<UsersPropsType>) => {
     return {
         type: 'SET_USERS',
         payload: {users}
     } as const
 }
-export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageActionCreator>
-export const setCurrentPageActionCreator = (currentPage: number) => {
+export type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'SET_CURRENT_PAGE',
         payload: {currentPage}
     } as const
 }
 
-export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountActionCreator>
-export const setTotalUsersCountActionCreator = (totalUsersCount: number) => {
+export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
+export const setTotalUsersCount = (totalUsersCount: number) => {
     return {
         type: 'SET_TOTAL_USERS_COUNT',
         count: totalUsersCount
     } as const
 }
 
-export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingActionCreator>
-export const toggleIsFetchingActionCreator = (isFetching: boolean) => {
+export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE_IS_FETCHING',
         payload: {isFetching}
