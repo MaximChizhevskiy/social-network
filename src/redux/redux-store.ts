@@ -4,7 +4,7 @@ import dialogsReducer, {SendNewMessageActionType, UpdateNewMessageBodyActionType
 import usersReducer, {
     FollowActionType,
     SetCurrentPageActionType, setTotalUsersCountActionType,
-    SetUsersActionType,
+    SetUsersActionType, toggleIsFetchingActionType,
     UnfollowActionType
 } from "./users-reducer";
 
@@ -18,6 +18,7 @@ export type ActionsTypes =
     | SetUsersActionType
     | SetCurrentPageActionType
     | setTotalUsersCountActionType
+    | toggleIsFetchingActionType
 
 export type StateReduxType = ReturnType<typeof store.getState>
 export type StoreReduxType = typeof store

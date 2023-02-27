@@ -21,13 +21,15 @@ type initialStateType = {
     pageSize: number,
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 let initialState: initialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export type FollowActionType = ReturnType<typeof followActionCreator>
@@ -69,6 +71,14 @@ export const setTotalUsersCountActionCreator = (totalUsersCount: number) => {
     } as const
 }
 
+export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingActionCreator>
+export const toggleIsFetchingActionCreator = (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE_IS_FETCHING',
+        payload: {isFetching}
+    } as const
+}
+
 const userReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case "FOLLOW":
@@ -97,6 +107,8 @@ const userReducer = (state: initialStateType = initialState, action: ActionsType
             return {...state, currentPage: action.payload.currentPage}
         case "SET_TOTAL_USERS_COUNT":
             return {...state, totalUsersCount: action.count}
+        case "TOGGLE_IS_FETCHING":
+            return {...state, isFetching: action.payload.isFetching}
         default: {
             return state
         }
