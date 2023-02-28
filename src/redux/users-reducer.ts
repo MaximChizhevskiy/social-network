@@ -2,7 +2,7 @@ import {ActionsTypes} from "./redux-store";
 
 export type UsersPropsType = {
     id: number,
-    photos: any,// ИСПРАВИТЬ!
+    photos: {small: null | string, large: null | string},
     followed: boolean,
     name: string,
     status: string,

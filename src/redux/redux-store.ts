@@ -1,5 +1,5 @@
 import {combineReducers, legacy_createStore} from "redux";
-import profileReducer, {AddPostActionType, ChangeNewTextActionType} from "./profile-reducer";
+import profileReducer, {AddPostActionType, ChangeNewTextActionType, setUserProfileActionType} from "./profile-reducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateNewMessageBodyActionType} from "./dialogs-reducer";
 import usersReducer, {
     FollowActionType,
@@ -19,6 +19,7 @@ export type ActionsTypes =
     | SetCurrentPageActionType
     | setTotalUsersCountActionType
     | toggleIsFetchingActionType
+    | setUserProfileActionType
 
 export type StateReduxType = ReturnType<typeof store.getState>
 export type StoreReduxType = typeof store

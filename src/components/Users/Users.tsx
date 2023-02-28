@@ -1,18 +1,15 @@
 import React from 'react';
-import {UsersPagePropsType} from "./UsersContainer";
+import {UsersContainerPagePropsType} from "./UsersContainer";
 import styles from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
+import {NavLink} from "react-router-dom";
 
-/*type PagePropsType = {
-    pages:  Array<UsersPagePropsType>
-    onPageChanged: (pages: Array<UsersPagePropsType>) => void
-}*/
 
-type PropsType = UsersPagePropsType & {
+type UserPagePropsType = UsersContainerPagePropsType & {
     onPageChanged: (pageNumber: number) => void
 }
 
-const Users = (props: PropsType) => {
+const Users = (props: UserPagePropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -32,8 +29,10 @@ const Users = (props: PropsType) => {
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
+                        <NavLink to={'/profile/' + u.id}>
                         <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={styles.userPhoto}
                              alt={'user avatar'}/>
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed ? <button onClick={() => {
