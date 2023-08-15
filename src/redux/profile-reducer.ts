@@ -86,7 +86,7 @@ const profileReducer = (state: ProfilePropsType = initialState, action: ActionsT
         case 'ADD-POST':
             return {
                 ...state,
-                posts: [...state.posts, {id: 5, message: action.payload.newPostText, likesCount: 0}],
+                posts: [{id: 5, message: action.payload.newPostText, likesCount: 0}, ...state.posts],
                 newPostText: ''
             }
         case 'UPDATE-NEW-POST-TEXT':

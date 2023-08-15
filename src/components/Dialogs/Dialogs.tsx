@@ -24,6 +24,7 @@ const Dialogs = (props: DialogsPageType) => {
 
     const onSendMessageClick = () => {
         props.sendNewMessage(value)
+        setValue('')
     }
 
     const onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
