@@ -7,6 +7,7 @@ import usersReducer, {
     SetUsersActionType, toggleIsFetchingActionType,
     UnfollowActionType
 } from "./users-reducer";
+import authReducer, {setUserDataActionType} from "./auth-reducer";
 
 export type ActionsTypes =
     AddPostActionType
@@ -20,6 +21,7 @@ export type ActionsTypes =
     | setTotalUsersCountActionType
     | toggleIsFetchingActionType
     | setUserProfileActionType
+    | setUserDataActionType
 
 export type StateReduxType = ReturnType<typeof store.getState>
 export type StoreReduxType = typeof store
@@ -28,7 +30,8 @@ export type DispatchType = typeof store.dispatch
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 let store = legacy_createStore(reducers)
 
