@@ -72,9 +72,9 @@ export const updateNewPostTextActionCreator = (newText: string) => {
     } as const
 }
 
-export type setUserProfileActionType = ReturnType<typeof setUserProfile>
+export type setUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
 
-export const setUserProfile = (profile: ProfileTypes) => {
+export const setUserProfileActionCreator = (profile: ProfileTypes) => {
     return {
         type: "SET_USER_PROFILE",
         payload: {profile}
