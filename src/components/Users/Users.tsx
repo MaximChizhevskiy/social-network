@@ -21,10 +21,23 @@ const Users = (props: UserPagePropsType) => {
         <div>
             <div>
                 {pages.map(p => {
-                    return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                                 onClick={(event) => {
-                                     props.onPageChanged(p)
-                                 }}>{p}</span>
+                    if (p <= 20 || p > pages.length - 20) {
+                        return (
+                            <span
+                                key={p}
+                                className={props.currentPage === p ? styles.selectedPage : styles.p}
+                                onClick={() => {
+                                    props.onPageChanged(p);
+                                }}
+                            >
+                    {p}
+                </span>
+                        );
+                    } else if (p === 21 || p === pages.length - 20 + 1) {
+                        // Add an ellipsis (...) for pages not displayed in between
+                        return <span key={p}> * * * </span>;
+                    }
+                    return null;
                 })}
             </div>
             {props.users.map(u => <div key={u.id}>
