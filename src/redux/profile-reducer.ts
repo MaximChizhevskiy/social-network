@@ -35,7 +35,7 @@ let initialState: ProfilePropsType = {
         {id: 5, message: "Супер выходные", likesCount: 25},
         {id: 6, message: "Просто пост", likesCount: 3}
     ],
-    newPostText: 'Text for your post',
+    newPostText: '',
     profile: {
         aboutMe: '',
         contacts: {

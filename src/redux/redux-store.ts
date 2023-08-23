@@ -4,7 +4,7 @@ import dialogsReducer, {SendNewMessageActionType, UpdateNewMessageBodyActionType
 import usersReducer, {
     FollowActionType,
     SetCurrentPageActionType, setTotalUsersCountActionType,
-    SetUsersActionType, toggleIsFetchingActionType,
+    SetUsersActionType, toggleIsFetchingActionType, toggleFollowingProgressActionType,
     UnfollowActionType
 } from "./users-reducer";
 import authReducer, {setUserDataActionType} from "./auth-reducer";
@@ -22,6 +22,7 @@ export type ActionsTypes =
     | toggleIsFetchingActionType
     | setUserProfileActionType
     | setUserDataActionType
+    | toggleFollowingProgressActionType
 
 export type StateReduxType = ReturnType<typeof store.getState>
 export type StoreReduxType = typeof store
