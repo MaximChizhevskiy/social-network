@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {DispatchType, StateReduxType, StoreReduxType} from "./redux/redux-store";

@@ -14,10 +14,7 @@ export const usersAPI = {
         .then(response => {
             return response.data
         })
-    }
-}
-
-export const followUnfollowAPI = {
+    },
     follow(id: number) {
         return instance.post(`follow/${id}`, {})
         .then(response => {
@@ -31,3 +28,4 @@ export const followUnfollowAPI = {
         })
     }
 }
+

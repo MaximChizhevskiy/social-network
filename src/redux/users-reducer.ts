@@ -1,4 +1,5 @@
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppThunkType} from "./redux-store";
+import {usersAPI} from "../api/api";
 
 export type UsersPropsType = {
     id: number,
@@ -130,4 +131,60 @@ const userReducer = (state: initialStateType = initialState, action: ActionsType
     }
 }
 
+//Thunk on async await with try catch
+export const getUsersThunkCreator = (currentPage: number, pageSize: number): AppThunkType => async dispatch => {
+    try {
+        dispatch(toggleIsFetching(true))
+        const res = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setUsers(res.items))
+        dispatch(setCurrentPage(currentPage))
+        dispatch(setTotalUsersCount(res.totalCount))
+        dispatch(toggleIsFetching(false))
+    } catch (err) {
+        alert('ERROR: ' + err)
+    }
+}
+
+export const unfollowThunkCreator = (userId: number): AppThunkType => async dispatch => {
+    try {
+        dispatch(toggleFollowingProgress(true, userId))
+        const res = await usersAPI.unfollow(userId)
+        if (res.resultCode === 0) {
+            dispatch(unfollow(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+    } catch (err) {
+        alert('ERROR: ' + err)
+    }
+}
+
+export const followThunkCreator = (userId: number): AppThunkType => async dispatch => {
+    try {
+        dispatch(toggleFollowingProgress(true, userId))
+        const res = await usersAPI.follow(userId)
+            if (res.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+    } catch (err) {
+        alert('ERROR: ' + err)
+    }
+}
+
+//Thunk
+//*export const getUsersThunkCreator = (currentPage: number, pageSize: number) : AppThunkType => {
+//     return (dispatch) => {
+//         dispatch(toggleIsFetching(true))
+//
+//         usersAPI.getUsers(currentPage, pageSize)
+//         .then(data => {
+//             dispatch(setUsers(data.items))
+//             dispatch(setTotalUsersCount(data.totalCount))
+//             dispatch(toggleIsFetching(false))
+//         })
+//     }
+// }*/
+
 export default userReducer
+
+

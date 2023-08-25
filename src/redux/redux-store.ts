@@ -1,4 +1,4 @@
-import {combineReducers, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import profileReducer, {AddPostActionType, ChangeNewTextActionType, setUserProfileActionType} from "./profile-reducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateNewMessageBodyActionType} from "./dialogs-reducer";
 import usersReducer, {
@@ -8,6 +8,7 @@ import usersReducer, {
     UnfollowActionType
 } from "./users-reducer";
 import authReducer, {setUserDataActionType} from "./auth-reducer";
+import thunk, {ThunkAction} from "redux-thunk"
 
 export type ActionsTypes =
     AddPostActionType
@@ -27,6 +28,7 @@ export type ActionsTypes =
 export type StateReduxType = ReturnType<typeof store.getState>
 export type StoreReduxType = typeof store
 export type DispatchType = typeof store.dispatch
+export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType,StateReduxType, unknown, ActionsTypes>
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -34,6 +36,6 @@ let reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer
 })
-let store = legacy_createStore(reducers)
+let store = legacy_createStore(reducers, applyMiddleware(thunk))
 
 export default store

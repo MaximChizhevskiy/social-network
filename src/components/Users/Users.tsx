@@ -3,7 +3,6 @@ import {UsersContainerPagePropsType} from "./UsersContainer";
 import styles from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import {NavLink} from "react-router-dom";
-import {followUnfollowAPI} from "../../api/api";
 
 
 type UserPagePropsType = UsersContainerPagePropsType & {
@@ -50,26 +49,15 @@ const Users = (props: UserPagePropsType) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id)
-                                followUnfollowAPI.unfollow(u.id)
-                                .then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.unfollow(u.id)
-                                    }
-                                   props.toggleFollowingProgress(false, u.id)
-                                })
-                            }}>Unfollow</button>
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {
+                                          props.unfollowThunkCreator(u.id)
+                                      }}>Unfollow</button>
 
-                            : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id)
-                                followUnfollowAPI.follow(u.id)
-                                .then(data => {
-                                   if (data.resultCode === 0) {
-                                       props.follow(u.id)
-                                   }
-                                   props.toggleFollowingProgress(false, u.id)
-                                })}}>Follow</button>}
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {
+                                          props.followThunkCreator(u.id)
+                                      }}>Follow</button>}
                     </div>
                 </span>
                 <span>
