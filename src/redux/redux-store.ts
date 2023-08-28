@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import profileReducer, {AddPostActionType, ChangeNewTextActionType, setUserProfileActionType} from "./profile-reducer";
+import {AddPostActionType, ChangeNewTextActionType, profileReducer, setUserProfileActionType} from "./profile-reducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateNewMessageBodyActionType} from "./dialogs-reducer";
 import usersReducer, {
     FollowActionType,

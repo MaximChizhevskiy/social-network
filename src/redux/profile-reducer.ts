@@ -1,5 +1,6 @@
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppThunkType} from "./redux-store";
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
+import {usersAPI} from "../api/api";
 
 export type ProfileTypes = {
     aboutMe: string,
@@ -16,7 +17,7 @@ export type ProfileTypes = {
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
-    userId: number
+    userId: number,
     photos: {small: null | string, large:  string | undefined}
 }
 
@@ -73,15 +74,14 @@ export const updateNewPostTextActionCreator = (newText: string) => {
 }
 
 export type setUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
-
-export const setUserProfileActionCreator = (profile: ProfileTypes) => {
+const setUserProfileActionCreator = (profile: ProfileTypes) => {
     return {
         type: "SET_USER_PROFILE",
         payload: {profile}
     } as const
 }
 
-const profileReducer = (state: ProfilePropsType = initialState, action: ActionsTypes) => {
+export const profileReducer = (state: ProfilePropsType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
             return {
@@ -100,4 +100,11 @@ const profileReducer = (state: ProfilePropsType = initialState, action: ActionsT
 
 }
 
-export default profileReducer
+export const getProfileUsersThunkCreator = (userId: string): AppThunkType => async dispatch => {
+    try {
+        const  res = await usersAPI.getProfile(userId)
+        dispatch(setUserProfileActionCreator(res))
+    } catch (err) {
+        alert('ERROR: ' + err)
+    }
+}

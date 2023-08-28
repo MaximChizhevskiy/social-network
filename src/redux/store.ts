@@ -1,6 +1,6 @@
 import {PostType} from "../components/Profile/MyPosts/Post/Post";
 import {DialogsPageType} from "../components/Dialogs/Dialogs";
-import profileReducer, {AddPostActionType, ChangeNewTextActionType} from "./profile-reducer";
+import {AddPostActionType, ChangeNewTextActionType, profileReducer} from "./profile-reducer";
 import dialogsReducer, {UpdateNewMessageBodyActionType, SendNewMessageActionType} from "./dialogs-reducer";
 
 export type ProfilePageType = {

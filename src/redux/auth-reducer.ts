@@ -1,4 +1,5 @@
-import {ActionsTypes} from "./redux-store";
+import {ActionsTypes, AppThunkType} from "./redux-store";
+import {authAPI} from "../api/api";
 
 export type AuthInitialStateType = {
     id: null | number,
@@ -20,7 +21,7 @@ let initialState: AuthInitialStateType = {
 }
 
 export type setUserDataActionType = ReturnType<typeof setAuthUserDataActionCreator>
-export const setAuthUserDataActionCreator = (data: MeResponseDataType) => {
+const setAuthUserDataActionCreator = (data: MeResponseDataType) => {
     return {
         type: 'SET-USER-DATA',
         payload: {data}
@@ -37,6 +38,15 @@ const authReducer = (state: AuthInitialStateType = initialState, action: Actions
             }
         default:
             return state
+    }
+}
+
+export const getAuthUserDataThunkCreator = (): AppThunkType => async dispatch => {
+    try {
+        const res = await authAPI.me()
+        dispatch(setAuthUserDataActionCreator(res.data))
+    } catch (err) {
+        alert('ERROR: ' + err)
     }
 }
 
